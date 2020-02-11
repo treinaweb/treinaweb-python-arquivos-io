@@ -15,9 +15,17 @@ while(opcao_menu != 0):
     print("0. Sair")
     opcao_menu = int(input("Digite a opção desejada: "))
 
-    # if opcao_menu == 1:
-    #     for i in lista_contatos:
-    #         print(f"nome: {i.nome} / email: {i.email} / telefone: {i.telefone}")
+    if opcao_menu == 1:
+        try:
+            with open("contatos.txt", "r") as arquivo:
+                lista_contatos = arquivo.readlines()
+                for i in lista_contatos:
+                    dados = (i.split('-'))
+                    contato_novo = Contato(dados[0][:-1], dados[1][1:-1], dados[2][1:-1])
+                    print(f"nome: {contato_novo.nome} / email: {contato_novo.email} / telefone: {contato_novo.telefone}")
+        except FileNotFoundError:
+            print("Arquivo não encontrado")
+
     if opcao_menu == 2:
         try:
             with open("contatos.txt", "a") as arquivo:
