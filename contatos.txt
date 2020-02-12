@@ -1,3 +1,5 @@
 Joao - joao@mail.com - 123 
-Maria - maria@mail.com - 123 
 Pedro - pedro@mail.com - 123 
+Maria - maria@mail.com - 123 
+Jose - jose@mail.com - 123 
+Joaquina - joaquina@mail.com - 123 
