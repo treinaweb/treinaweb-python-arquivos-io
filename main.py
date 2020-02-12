@@ -1,4 +1,5 @@
 from contato import Contato
+from arquivo_service import *
 
 print("-" * 30)
 print(("-" *3) + " Agenda de contatos TW " + ("-" *3))
@@ -16,28 +17,17 @@ while(opcao_menu != 0):
     opcao_menu = int(input("Digite a opção desejada: "))
 
     if opcao_menu == 1:
-        try:
-            with open("contatos.txt", "r") as arquivo:
-                lista_contatos = arquivo.readlines()
-                for i in lista_contatos:
-                    dados = (i.split('-'))
-                    contato_novo = Contato(dados[0][:-1], dados[1][1:-1], dados[2][1:-1])
-                    print(f"nome: {contato_novo.nome} / email: {contato_novo.email} / telefone: {contato_novo.telefone}")
-        except FileNotFoundError:
-            print("Arquivo não encontrado")
+        contatos = listar_contatos()
+        for contato in contatos:
+            print(f"nome: {contato.nome} / email: {contato.email} / telefone: {contato.telefone}")
 
     if opcao_menu == 2:
-        try:
-            with open("contatos.txt", "a") as arquivo:
-                nome_contato = input("Digite o nome do contato: ")
-                email_contato = input("Digite o email do contato: ")
-                telefone_contato = input("Digite o telefone do contato: ")
-                contato_novo = Contato(nome_contato, email_contato, telefone_contato)
-                arquivo.write(f"{contato_novo.nome} - {contato_novo.email} - {contato_novo.telefone} \n")
-            print(arquivo.closed)
-        except FileNotFoundError:
-            print("Arquivo não encontrado")
-        #lista_contatos.append(contato_novo)
+        nome_contato = input("Digite o nome do contato: ")
+        email_contato = input("Digite o email do contato: ")
+        telefone_contato = input("Digite o telefone do contato: ")
+        contato_novo = Contato(nome_contato, email_contato, telefone_contato)
+        cadastrar_contato(contato_novo)
+
     elif opcao_menu == 3:
         contato_remover = input("Digite o email do contato que deseja remover: ")
         contato_encontrado = False
