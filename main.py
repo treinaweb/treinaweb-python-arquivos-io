@@ -26,7 +26,13 @@ while(opcao_menu != 0):
             print("Contato cadastrado com sucesso")
         else:
             print("Contato já existe")
-
+    elif opcao_menu == 3:
+        contato_remover = input("Digite o email do contato que deseja remover: ")
+        contato_removido = remover_contato_email(contato_remover)
+        if contato_removido:
+            print("Contato removido com sucesso")
+        else:
+            print("Contato não encontrado")
     elif opcao_menu == 4:
         contato_buscar = input("Digite o email do contato que deseja buscar: ")
         contato_encontrado = buscar_contato_email(contato_buscar)
